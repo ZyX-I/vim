@@ -70,6 +70,9 @@
 # undef PY_SSIZE_T_CLEAN
 #endif
 
+#define ERRORS_DECODE_ARG NULL
+#define ERRORS_ENCODE_ARG ERRORS_DECODE_ARG
+
 #if defined(MACOS) && !defined(MACOS_X_UNIX)
 # include "macglue.h"
 # include <CodeFragments.h>

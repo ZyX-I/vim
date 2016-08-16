@@ -134,7 +134,8 @@ StringToChars(PyObject *obj, PyObject **todecref)
     {
 	PyObject	*bytes;
 
-	if (!(bytes = PyUnicode_AsEncodedString(obj, ENC_OPT, NULL)))
+	if (!(bytes = PyUnicode_AsEncodedString(obj, ENC_OPT,
+			ERRORS_ENCODE_ARG)))
 	    return NULL;
 
 	if(PyBytes_AsStringAndSize(bytes, (char **) &str, NULL) == -1
@@ -4117,7 +4118,8 @@ StringToLine(PyObject *obj)
     }
     else if (PyUnicode_Check(obj))
     {
-	if (!(bytes = PyUnicode_AsEncodedString(obj, ENC_OPT, NULL)))
+	if (!(bytes = PyUnicode_AsEncodedString(obj, ENC_OPT,
+			ERRORS_ENCODE_ARG)))
 	    return NULL;
 
 	if (PyBytes_AsStringAndSize(bytes, &str, &len) == -1
@@ -6197,7 +6199,7 @@ _ConvertFromPyObject(PyObject *obj, typval_T *tv, PyObject *lookup_dict)
 	PyObject	*bytes;
 	char_u	*str;
 
-	bytes = PyUnicode_AsEncodedString(obj, ENC_OPT, NULL);
+	bytes = PyUnicode_AsEncodedString(obj, ENC_OPT, ERRORS_ENCODE_ARG);
 	if (bytes == NULL)
 	    return -1;
 
